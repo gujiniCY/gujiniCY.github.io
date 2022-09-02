@@ -8,20 +8,7 @@
     <link href="/2022/09/02/create-vue-project/"/>
     <url>/2022/09/02/create-vue-project/</url>
     
-    <content type="html"><![CDATA[<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>1.采用Vite 驱动的 Vue 项目</p><p> ![[20220902114652.png]]<br>2.启动项目</p><p>![[20220902114829.png]]</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>create-vue3-project</title>
-    <link href="/2022/09/02/create-vue3-project/"/>
-    <url>/2022/09/02/create-vue3-project/</url>
-    
-    <content type="html"><![CDATA[<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>1.采用Vite 驱动的 Vue 项目</p><p> ![[./create-vue3-project/20220902114652.png]]<br>2.启动项目</p><p>![[./create-vue3-project/20220902114829.png]]</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>1.采用Vite 驱动的 Vue 项目</p><p> <img src="/2022/09/02/create-vue-project/20220902114652.png"></p><p>2.启动项目</p><p> <img src="/2022/09/02/create-vue-project/20220902114829.png"></p>]]></content>
     
     
     

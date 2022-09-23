@@ -16,24 +16,26 @@
   <meta name="author" content="宋浩志">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本篇文章以安装MySQL数据库为例子，记录docker常用命令 安装docker1yum install docker -y  docker容器互联新建网络1docker network create my-net  列出所有网络1docker network ls  将容器连接到网络1docker network connect my-net mysql  断开容器的网络1docker netw">
+    <meta name="description" content="简介acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书. 官方文档：https:&#x2F;&#x2F;github.com&#x2F;acmesh-official&#x2F;acme.sh&#x2F;wiki&#x2F;%E8%AF%B4%E6%98%8E 本篇文章以Nginx为例子，来实现获取SSL证书，以及配置Nginx 安装安装很简单, 一个命令: 1curl https:&#x2F;&#x2F;get.acme.sh | sh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="docker常用命令记录">
-<meta property="og:url" content="https://www.songhaozhi.com/2022/09/07/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="使用acme.sh来申请SSL证书">
+<meta property="og:url" content="https://www.songhaozhi.com/2022/09/23/%E4%BD%BF%E7%94%A8acme-sh%E6%9D%A5%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6/index.html">
 <meta property="og:site_name" content="宋浩志的博客">
-<meta property="og:description" content="本篇文章以安装MySQL数据库为例子，记录docker常用命令 安装docker1yum install docker -y  docker容器互联新建网络1docker network create my-net  列出所有网络1docker network ls  将容器连接到网络1docker network connect my-net mysql  断开容器的网络1docker netw">
+<meta property="og:description" content="简介acme.sh 实现了 acme 协议, 可以从 letsencrypt 生成免费的证书. 官方文档：https:&#x2F;&#x2F;github.com&#x2F;acmesh-official&#x2F;acme.sh&#x2F;wiki&#x2F;%E8%AF%B4%E6%98%8E 本篇文章以Nginx为例子，来实现获取SSL证书，以及配置Nginx 安装安装很简单, 一个命令: 1curl https:&#x2F;&#x2F;get.acme.sh | sh">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-09-07T02:30:36.000Z">
-<meta property="article:modified_time" content="2022-09-23T08:17:38.163Z">
+<meta property="article:published_time" content="2022-09-23T06:12:27.000Z">
+<meta property="article:modified_time" content="2022-09-23T08:17:38.179Z">
 <meta property="article:author" content="宋浩志">
-<meta property="article:tag" content="docker">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="ssl">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>docker常用命令记录 - 宋浩志的博客</title>
+  <title>使用acme.sh来申请SSL证书 - 宋浩志的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -238,7 +240,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="docker常用命令记录"></span>
+            <span id="subtitle" data-typed-text="使用acme.sh来申请SSL证书"></span>
           
         </div>
 
@@ -249,8 +251,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-07 10:30" pubdate>
-          September 7, 2022 am
+        <time datetime="2022-09-23 14:12" pubdate>
+          September 23, 2022 pm
         </time>
       </span>
     
@@ -262,7 +264,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          1.8k 字
+          3.8k 字
         
       </span>
     
@@ -274,7 +276,7 @@
         
         
           <!-- compatible with older versions-->
-          15 分钟
+          32 分钟
         
       </span>
     
@@ -320,71 +322,81 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">docker常用命令记录</h1>
+            <h1 style="display: none">使用acme.sh来申请SSL证书</h1>
             
             
               <div class="markdown-body">
                 
-                <p>本篇文章以安装MySQL数据库为例子，记录docker常用命令</p>
-<h2 id="安装docker"><a href="#安装docker" class="headerlink" title="安装docker"></a>安装docker</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> docker -y<br></code></pre></td></tr></table></figure>
-
-<h2 id="docker容器互联"><a href="#docker容器互联" class="headerlink" title="docker容器互联"></a>docker容器互联</h2><h3 id="新建网络"><a href="#新建网络" class="headerlink" title="新建网络"></a>新建网络</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">docker network create <span class="hljs-keyword">my</span>-net<br></code></pre></td></tr></table></figure>
-
-<h3 id="列出所有网络"><a href="#列出所有网络" class="headerlink" title="列出所有网络"></a>列出所有网络</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker network <span class="hljs-built_in">ls</span><br></code></pre></td></tr></table></figure>
-
-<h3 id="将容器连接到网络"><a href="#将容器连接到网络" class="headerlink" title="将容器连接到网络"></a>将容器连接到网络</h3><figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">docker network <span class="hljs-keyword">connect</span> <span class="hljs-keyword">my</span>-net mysql<br></code></pre></td></tr></table></figure>
-
-<h3 id="断开容器的网络"><a href="#断开容器的网络" class="headerlink" title="断开容器的网络"></a>断开容器的网络</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript">docker network disconnect <span class="hljs-keyword">my</span>-net mysql<br></code></pre></td></tr></table></figure>
-
-<h3 id="删除一个或多个网络"><a href="#删除一个或多个网络" class="headerlink" title="删除一个或多个网络"></a>删除一个或多个网络</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">docker network <span class="hljs-keyword">rm</span> my-<span class="hljs-keyword">net</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="docker客户端"><a href="#docker客户端" class="headerlink" title="docker客户端"></a>docker客户端</h2><h3 id="容器使用"><a href="#容器使用" class="headerlink" title="容器使用"></a>容器使用</h3><h4 id="搜索镜像"><a href="#搜索镜像" class="headerlink" title="搜索镜像"></a>搜索镜像</h4><p>这里我们搜索<code>mysql</code>镜像</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker search mysql</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="获取MySQL镜像"><a href="#获取MySQL镜像" class="headerlink" title="获取MySQL镜像"></a>获取<code>MySQL</code>镜像</h4><p>下载需要的版本<code>docker pull mysql:tag</code> </p>
-<p><code>tag</code>代表版本号，没有代表是<code>lastest</code>的</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">docker</span> pull docker.io/mysql:<span class="hljs-number">5</span>.<span class="hljs-number">7</span>.<span class="hljs-number">26</span><br></code></pre></td></tr></table></figure>
-<h4 id="列出本地镜像"><a href="#列出本地镜像" class="headerlink" title="列出本地镜像"></a>列出本地镜像</h4><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs inform7">docker images <span class="hljs-comment">[OPTIONS]</span> <span class="hljs-comment">[REPOSITORY<span class="hljs-comment">[:TAG]</span>]</span><br></code></pre></td></tr></table></figure>
+                <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p><code>acme.sh</code> 实现了 <code>acme</code> 协议, 可以从 <code>letsencrypt</code> 生成免费的证书.</p>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E">https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E</a></p>
+<p>本篇文章以Nginx为例子，来实现获取SSL证书，以及配置Nginx</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>安装很简单, 一个命令:</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">curl https://<span class="hljs-built_in">get</span>.acme.<span class="hljs-keyword">sh</span> | <span class="hljs-keyword">sh</span> -s email=my@example.<span class="hljs-keyword">com</span><br></code></pre></td></tr></table></figure>
 <div class="note note-info">
-            <p><strong>OPTIONS说明</strong></p><ul><li><p>-a :列出本地所有的镜像（含中间映像层，默认情况下，过滤掉中间映像层）；</p></li><li><p>–digests :显示镜像的摘要信息；</p></li><li><p>-f :显示满足条件的镜像；</p></li><li><p>–format :指定返回值的模板文件；</p></li><li><p>–no-trunc :显示完整的镜像信息；</p></li><li><p>-q :只显示镜像ID。</p></li></ul>
+            <p><code>my@example.com</code>是你的邮箱地址</p>
           </div>
 
-<h4 id="创建-MySQL-数据目录"><a href="#创建-MySQL-数据目录" class="headerlink" title="创建 MySQL 数据目录"></a>创建 MySQL 数据目录</h4><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">mkdir -p <span class="hljs-regexp">/opt/my</span>sql<br></code></pre></td></tr></table></figure>
+<p>创建 一个 shell 的 alias, 例如 .bashrc，方便你的使用: </p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stata">alias acme.<span class="hljs-keyword">sh</span>=~/.acme.<span class="hljs-keyword">sh</span>/acme.<span class="hljs-keyword">sh</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="启动MySQL实例"><a href="#启动MySQL实例" class="headerlink" title="启动MySQL实例"></a>启动<code>MySQL</code>实例</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gradle">docker run --name mysql -p <span class="hljs-number">3306</span>:<span class="hljs-number">3306</span> --privileged=<span class="hljs-keyword">true</span> -v <span class="hljs-regexp">/opt/my</span>sql<span class="hljs-regexp">/log:/</span>var<span class="hljs-regexp">/log/my</span>sql -v <span class="hljs-regexp">/opt/my</span>sql<span class="hljs-regexp">/conf:/</span>etc<span class="hljs-regexp">/mysql -v /</span>opt<span class="hljs-regexp">/mysql/</span>data:<span class="hljs-regexp">/var/</span>lib/mysql -e MYSQL_ROOT_PASSWORD=<span class="hljs-number">123456</span> --net my-net --restart=unless-stopped -d mysql:<span class="hljs-number">5.7</span>.<span class="hljs-number">26</span><br></code></pre></td></tr></table></figure>
+<p>普通用户和 root 用户都可以安装使用. 安装过程进行了以下几步:</p>
+<ol>
+<li>把 acme.sh 安装到你的 home 目录下:</li>
+</ol>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arcade">~<span class="hljs-regexp">/.acme.sh/</span><br></code></pre></td></tr></table></figure>
+<ol start="2">
+<li>自动为你创建 cronjob, 每天 0:00 点自动检测所有的证书, 如果快过期了, 需要更新, 则会自动更新证书.</li>
+</ol>
+<p>更高级的安装选项请参考: <a target="_blank" rel="noopener" href="https://github.com/Neilpang/acme.sh/wiki/How-to-install">https://github.com/Neilpang/acme.sh/wiki/How-to-install</a></p>
+<h1 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h1><p>先把Nginx配置文件写好，让这个域名可以通过http访问</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>	<span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br>       <span class="hljs-attribute">server_name</span>  你的域名;<br>       <span class="hljs-section">location</span> / &#123;<br>          <span class="hljs-comment">#转发的ip和端口 </span><br>          <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8080;<br>       &#125;<br>       <span class="hljs-attribute">error_page</span>   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.html;<br>       <span class="hljs-section">location</span> = /50x.html &#123;<br>           <span class="hljs-attribute">root</span>   html;<br>       &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+<h1 id="生成证书"><a href="#生成证书" class="headerlink" title="生成证书"></a>生成证书</h1><p>关于生成证书，官方的例子有apache、nginx、手动 dns 的方式，我这里只演示Nginx的方式</p>
+<p>官方文档上这样写的</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E#1-http-%E6%96%B9%E5%BC%8F%E9%9C%80%E8%A6%81%E5%9C%A8%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%94%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6-%E6%9D%A5%E9%AA%8C%E8%AF%81%E4%BD%A0%E7%9A%84%E5%9F%9F%E5%90%8D%E6%89%80%E6%9C%89%E6%9D%83%E5%AE%8C%E6%88%90%E9%AA%8C%E8%AF%81-%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6%E4%BA%86">https://github.com/acmesh-official/acme.sh/wiki/%E8%AF%B4%E6%98%8E#1-http-%E6%96%B9%E5%BC%8F%E9%9C%80%E8%A6%81%E5%9C%A8%E4%BD%A0%E7%9A%84%E7%BD%91%E7%AB%99%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8B%E6%94%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6-%E6%9D%A5%E9%AA%8C%E8%AF%81%E4%BD%A0%E7%9A%84%E5%9F%9F%E5%90%8D%E6%89%80%E6%9C%89%E6%9D%83%E5%AE%8C%E6%88%90%E9%AA%8C%E8%AF%81-%E7%84%B6%E5%90%8E%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%94%9F%E6%88%90%E8%AF%81%E4%B9%A6%E4%BA%86</a></p>
+</blockquote>
+<blockquote>
+<p>如果你用的 nginx服务器, 或者反代, acme.sh 还可以智能的从 nginx的配置中自动完成验证, 你不需要指定网站根目录:</p>
+</blockquote>
+<p>执行以下命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">acme<span class="hljs-selector-class">.sh</span> <span class="hljs-attr">--issue</span> -d 你的域名<span class="hljs-selector-class">.com</span> <span class="hljs-attr">--nginx</span><br></code></pre></td></tr></table></figure>
+
+<p>生成好的证书会存放在<code>~/.acme.sh/example.com</code>下</p>
+<h1 id="copy-x2F-安装证书"><a href="#copy-x2F-安装证书" class="headerlink" title="copy&#x2F;安装证书"></a>copy&#x2F;安装证书</h1><p>前面证书生成以后, 接下来需要把证书 copy 到真正需要用它的地方.</p>
+<p>注意, 默认生成的证书都放在安装目录下: ~&#x2F;.acme.sh&#x2F;, 请不要直接使用此目录下的文件, 例如: 不要直接让 nginx&#x2F;apache 的配置文件使用这下面的文件. 这里面的文件都是内部使用, 而且目录结构可能会变化.</p>
+<p>正确的使用方法是使用 –install-cert 命令,并指定目标位置, 然后证书文件会被copy到相应的位置, 例如:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle">acme.sh --force --install-cert <br>-d example.com <br>--fullchain-<span class="hljs-keyword">file</span> <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/ssl/</span>example.com.crt <br>--key-<span class="hljs-keyword">file</span>  <span class="hljs-regexp">/etc/</span>nginx<span class="hljs-regexp">/ssl/</span>example.com.key <br>--reloadcmd <span class="hljs-string">&quot;service nginx force-reload&quot;</span> &gt; <span class="hljs-regexp">/dev/</span><span class="hljs-keyword">null</span> <br></code></pre></td></tr></table></figure>
 
 <div class="note note-info">
-            <p><strong>Tips</strong></p><ul><li><p><code>-e MYSQL_ROOT_PASSWORD=123456</code>命令: 指定MySQL的登录密码为 <code>123456</code></p></li><li><p><code>-v /opt/mysql/data:/var/lib/mysql</code> 命令: 将宿主机的目录 <code>/opt/mysql</code> 挂载到容器内部的目录 <code>/var/lib/mysql</code>，默认情况下 <code>MySQL</code> 将向 <code>/opt/mysql</code> 写入其数据文件。</p></li><li><p><code>-v /opt/mysql/conf:/etc/mysql</code>命令：MySQL配置文件存放位置</p></li><li><p><code> -v /opt/mysql/log:/var/log/mysql</code>命令：MySQL日志文件</p></li><li><p><code>--net my-net</code>命令: 将该容器加入到 <code>my-net</code> 网络,连接到 <code>my-net</code> 网络的任何其他容器都可以访问 <code>mysql</code> 容器上的所有端口。</p></li><li><p><code>--restart=unless-stopped</code>命令：在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器 </p></li><li><p><code>-d</code>命令：表示后台运行</p></li><li><p><code>-p 3306:3306</code>命令：端口映射</p></li><li><p><code>--privileged=true</code>命令：container内的root拥有真正的root权限</p></li></ul>
+            <p>–install-cert: 这个参数代表cpoy<br>-d: 你的域名<br>–key-file: copy你的私钥文件,需要和nginx指定的一致<br>–fullchain-file: copy你的证书链文件(此文件包含自己和中间ca机构的证书),需要和nginx指定的一致<br>–reloadcmd: 指定重新加载证书的命令</p>
           </div>
 
-<h3 id="查看docker容器运行情况"><a href="#查看docker容器运行情况" class="headerlink" title="查看docker容器运行情况"></a>查看docker容器运行情况</h3><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">docker ps</span><br></code></pre></td></tr></table></figure>
-<h3 id="查看所有的容器"><a href="#查看所有的容器" class="headerlink" title="查看所有的容器"></a>查看所有的容器</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">docker ps -<span class="hljs-selector-tag">a</span><br></code></pre></td></tr></table></figure>
-<h3 id="启动一个已停止的容器"><a href="#启动一个已停止的容器" class="headerlink" title="启动一个已停止的容器"></a>启动一个已停止的容器</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xquery">docker <span class="hljs-keyword">start</span> 容<span class="hljs-built_in">器id</span><br></code></pre></td></tr></table></figure>
+<p>(一个小提醒, 这里用的是 service nginx force-reload, 不是 service nginx reload, 据测试, reload 并不会重新加载证书, 所以用的 force-reload)</p>
+<p>Nginx 的配置 ssl_certificate 使用 &#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;fullchain.cer ，而非 &#x2F;etc&#x2F;nginx&#x2F;ssl&#x2F;<domain>.cer ，否则 SSL Labs 的测试会报 Chain issues Incomplete 错误。</domain></p>
+<p>–install-cert命令可以携带很多参数, 来指定目标文件. 并且可以指定 reloadcmd, 当证书更新以后, reloadcmd会被自动调用,让服务器生效.</p>
+<p>详细参数请参考: <a target="_blank" rel="noopener" href="https://github.com/Neilpang/acme.sh#3-install-the-issued-cert-to-apachenginx-etc">https://github.com/Neilpang/acme.sh#3-install-the-issued-cert-to-apachenginx-etc</a></p>
+<p>值得注意的是, 这里指定的所有参数都会被自动记录下来, 并在将来证书自动更新以后, 被再次自动调用.</p>
+<h1 id="修改Nginx配置文件"><a href="#修改Nginx配置文件" class="headerlink" title="修改Nginx配置文件"></a>修改Nginx配置文件</h1><p>执行上面的命令以后，会发现在<code>/etc/nginx/ssl</code>目录下会多出两个文件，我们需要把这两个文件在Nginx配置文件中配置好</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>		<span class="hljs-attribute">listen</span> <span class="hljs-number">443</span> ssl;<br>        <span class="hljs-attribute">server_name</span>  example.com;<br>        <span class="hljs-attribute">ssl</span> <span class="hljs-literal">on</span>;<br>        <span class="hljs-attribute">ssl_certificate</span>      /etc/nginx/ssl/example.com.crt;<br>        <span class="hljs-attribute">ssl_certificate_key</span>  /etc/nginx/ssl/example.com.key; <br>        <span class="hljs-attribute">ssl_session_timeout</span> <span class="hljs-number">5m</span>;<br>        <span class="hljs-attribute">ssl_session_cache</span> shared:SSL:<span class="hljs-number">50m</span>;<br>        <span class="hljs-attribute">ssl_protocols</span> SSLv3 SSLv2 TLSv1 TLSv1.<span class="hljs-number">1</span> TLSv1.<span class="hljs-number">2</span>; <span class="hljs-comment">#按照这个协议配置</span><br>        <span class="hljs-attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;<br>        <span class="hljs-attribute">ssl_prefer_server_ciphers</span> <span class="hljs-literal">on</span>;<br>        <span class="hljs-section">location</span> / &#123;<br>           <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:8080;<br>           <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;<br>           <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>           <span class="hljs-attribute">proxy_set_header</span> REMOTE-HOST <span class="hljs-variable">$remote_addr</span>;<br>           <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>        &#125;<br>        <span class="hljs-attribute">error_page</span>   <span class="hljs-number">500</span> <span class="hljs-number">502</span> <span class="hljs-number">503</span> <span class="hljs-number">504</span>  /50x.html;<br>        <span class="hljs-section">location</span> = /50x.html &#123;<br>            <span class="hljs-attribute">root</span>   html;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="停止一个容器"><a href="#停止一个容器" class="headerlink" title="停止一个容器"></a>停止一个容器</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">docker stop &lt;容器 ID&gt;<br></code></pre></td></tr></table></figure>
+<p>Nginx配置好后重启Nginx，访问你的域名。</p>
+<h1 id="更新证书"><a href="#更新证书" class="headerlink" title="更新证书"></a>更新证书</h1><p>目前证书在 60 天以后会自动更新, 你无需任何操作. 今后有可能会缩短这个时间, 不过都是自动的, 你不用关心.</p>
+<p>请确保 cronjob 正确安装, 看起来是类似这样的:</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle">crontab  -l<br><br><span class="hljs-number">56</span> * * * * <span class="hljs-string">&quot;/root/.acme.sh&quot;</span><span class="hljs-regexp">/acme.sh --cron --home &quot;/</span>root<span class="hljs-regexp">/.acme.sh&quot; &gt; /</span>dev/<span class="hljs-keyword">null</span><br></code></pre></td></tr></table></figure>
 
-<p>停止的容器可以通过 docker restart 重启：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">docker restart <span class="hljs-tag">&lt;<span class="hljs-name">容器</span> <span class="hljs-attr">ID</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="进入MySQL容器"><a href="#进入MySQL容器" class="headerlink" title="进入MySQL容器"></a>进入MySQL容器</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">docker exec -it mysql <span class="hljs-regexp">/bin/</span>bash<br></code></pre></td></tr></table></figure>
-<div class="note note-info">
-            <p><strong>Tips</strong></p><ul><li>-i: 交互式操作。</li><li>-t: 终端。</li><li>mysql: mysql 镜像。</li><li>&#x2F;bin&#x2F;bash：放在镜像名后的是命令，这里我们希望有个交互式 Shell，因此用的是 &#x2F;bin&#x2F;bash。</li></ul>
-          </div>
-
-<h3 id="退出容器"><a href="#退出容器" class="headerlink" title="退出容器"></a>退出容器</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">exit</span><br></code></pre></td></tr></table></figure>
-
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">https://www.runoob.com/docker/docker-tutorial.html</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://docs.halo.run/getting-started/install/other/docker-mysql">https://docs.halo.run/getting-started/install/other/docker-mysql</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.yiibai.com/docker/docker-introduction.html">https://www.yiibai.com/docker/docker-introduction.html</a></p>
-</blockquote>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/68ec752f0454">https://www.jianshu.com/p/68ec752f0454</a></p>
-</blockquote>
+<h1 id="其他常用命令"><a href="#其他常用命令" class="headerlink" title="其他常用命令"></a>其他常用命令</h1><p><code>acme.sh --info -d example.com </code>：查看已安装证书信息</p>
+<p><code>acme.sh --list</code>: 列出所有证书</p>
+<p><code>acme.sh --renew -d soulchild.site -d *.soulchild.site --force</code>: 手动强制更新证书</p>
+<p><code>acme.sh --renew-all</code>: 手动更新所有证书</p>
+<p><code>acme.sh --revoke</code>: 撤销证书</p>
+<p><code>acme.sh --remove -d soulchild.site</code>: 删除证书</p>
+<p><code>acme.sh --cron</code>: 通过cronjob更新所有证书。</p>
+<p><code>acme.sh --upgrade</code>: 升级acme.sh</p>
+<p><code>acme.sh --uninstall</code>: 卸载acme.sh</p>
+<h1 id="更新acme-sh"><a href="#更新acme-sh" class="headerlink" title="更新acme.sh"></a>更新acme.sh</h1><p><code>acme.sh --upgrade</code>：升级到最新版</p>
+<p><code>acme.sh --upgrade --auto-upgrade</code>：开启自动更新</p>
+<p><code>acme.sh --upgrade --auto-upgrade  0</code>：关闭自动更新</p>
 
                 
               </div>
@@ -403,8 +415,22 @@
     
       <span class="category-chain">
         
-  <a href="/categories/docker/" class="category-chain-item">docker</a>
+  <a href="/categories/nginx/" class="category-chain-item">nginx</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/nginx/centos/" class="category-chain-item">centos</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/nginx/centos/ssl/" class="category-chain-item">ssl</a>
+  
+  
+
+  
+
   
 
       </span>
@@ -418,7 +444,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/docker/">#docker</a>
+        <a href="/tags/nginx/">#nginx</a>
+      
+        <a href="/tags/centos/">#centos</a>
+      
+        <a href="/tags/ssl/">#ssl</a>
       
     </div>
   
@@ -430,8 +460,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>docker常用命令记录</div>
-      <div>https://www.songhaozhi.com/2022/09/07/docker常用命令记录/</div>
+      <div>使用acme.sh来申请SSL证书</div>
+      <div>https://www.songhaozhi.com/2022/09/23/使用acme-sh来申请SSL证书/</div>
     </div>
     <div class="license-meta">
       
@@ -443,7 +473,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Veröffentlicht am</div>
-          <div>September 7, 2022</div>
+          <div>September 23, 2022</div>
         </div>
       
       
@@ -473,18 +503,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/08/ruoyi-vue%E9%A1%B9%E7%9B%AE%E9%9B%86%E6%88%90flyway%E5%AE%9E%E7%8E%B0%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E8%A1%A8/" title="ruoyi-vue项目集成flyway实现自动创建表">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ruoyi-vue项目集成flyway实现自动创建表</span>
-                        <span class="visible-mobile">Vorheriger</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/09/05/vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%9B%9B-%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93/" title="vue学习笔记四-列表渲染">
-                        <span class="hidden-mobile">vue学习笔记四-列表渲染</span>
+                      <a href="/2022/09/23/CentOS%E5%AE%89%E8%A3%85Nginx/" title="CentOS安装Nginx">
+                        <span class="hidden-mobile">CentOS安装Nginx</span>
                         <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -505,7 +529,7 @@
         var options = Object.assign(
           {"clientID":"0f1792e7ee8a3d93a1d8","clientSecret":"945d95392eb142a2d5b837d13c981dc258495298","repo":"gujiniCY.github.io","owner":"gujiniCY","admin":["gujiniCY"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":false,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '74663a8258d03fceadc8d26a85c3a9fb'
+            id: '9722fbc3781cc96f7527099f5f5535e2'
           }
         )
         var gitalk = new Gitalk(options);

@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>CentOS安装Nginx</title>
+    <link href="/2022/09/23/CentOS%E5%AE%89%E8%A3%85Nginx/"/>
+    <url>/2022/09/23/CentOS%E5%AE%89%E8%A3%85Nginx/</url>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Nginx (engine x) 是一个高性能的HTTP和反向代理web服务器，同时也提供了IMAP&#x2F;POP3&#x2F;SMTP服务。Nginx是由伊戈尔·赛索耶夫为俄罗斯访问量第二的Rambler.ru站点（俄文：Рамблер）开发的。</p><p>其将源代码以类BSD许可证的形式发布，因它的稳定性、丰富的功能集、简单的配置文件和低系统资源的消耗而闻名。</p><p>Nginx是一款轻量级的Web 服务器&#x2F;反向代理服务器及电子邮件（IMAP&#x2F;POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，并发能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好。</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="添加Nginx到YUM源"><a href="#添加Nginx到YUM源" class="headerlink" title="添加Nginx到YUM源"></a>添加Nginx到YUM源</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm<br></code></pre></td></tr></table></figure><h2 id="安装Nginx"><a href="#安装Nginx" class="headerlink" title="安装Nginx"></a>安装Nginx</h2><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yum -y <span class="hljs-keyword">install</span> nginx<br></code></pre></td></tr></table></figure><h2 id="启动Nginx"><a href="#启动Nginx" class="headerlink" title="启动Nginx"></a>启动Nginx</h2><p>刚安装的Nginx不会自动启动</p><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">systemctl <span class="hljs-literal">start</span> nginx.service<br></code></pre></td></tr></table></figure><h2 id="查看Nginx状态"><a href="#查看Nginx状态" class="headerlink" title="查看Nginx状态"></a>查看Nginx状态</h2><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><br>systemctl <span class="hljs-built_in">enable</span> nginx.service<br></code></pre></td></tr></table></figure><h2 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">systemctl <span class="hljs-keyword">status</span> nginx.service<br></code></pre></td></tr></table></figure><h2 id="停止Nginx"><a href="#停止Nginx" class="headerlink" title="停止Nginx"></a>停止Nginx</h2><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">systemctl stop nginx.service<br></code></pre></td></tr></table></figure><h2 id="重启Nginx"><a href="#重启Nginx" class="headerlink" title="重启Nginx"></a>重启Nginx</h2><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">systemctl <span class="hljs-built_in">restart</span> nginx.service<br></code></pre></td></tr></table></figure><h2 id="重新读取nginx配置"><a href="#重新读取nginx配置" class="headerlink" title="重新读取nginx配置"></a>重新读取nginx配置</h2><p>这个最常用, 不用停止nginx服务就能使修改的配置生效</p><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">systemctl <span class="hljs-keyword">reload</span> nginx.service<br></code></pre></td></tr></table></figure><h2 id="网站文件存放默认目录"><a href="#网站文件存放默认目录" class="headerlink" title="网站文件存放默认目录"></a>网站文件存放默认目录</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/usr/</span>share<span class="hljs-regexp">/nginx/</span>html<br></code></pre></td></tr></table></figure><h2 id="Nginx配置文件路径"><a href="#Nginx配置文件路径" class="headerlink" title="Nginx配置文件路径"></a>Nginx配置文件路径</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/etc/</span>nginx/nginx.conf<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>nginx</category>
+      
+      <category>centos</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>nginx</tag>
+      
+      <tag>centos</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用Windows内置虚拟机Hyper-v安装CentOS</title>
     <link href="/2022/09/08/%E4%BD%BF%E7%94%A8Windows%E5%86%85%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BAHyper-v%E5%AE%89%E8%A3%85CentOS/"/>
     <url>/2022/09/08/%E4%BD%BF%E7%94%A8Windows%E5%86%85%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BAHyper-v%E5%AE%89%E8%A3%85CentOS/</url>

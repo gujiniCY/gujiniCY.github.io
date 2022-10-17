@@ -116,6 +116,39 @@
   
   
   <entry>
+    <title>docker部署ruoyi-vue项目</title>
+    <link href="/2022/09/08/docker%E9%83%A8%E7%BD%B2ruoyi-vue%E9%A1%B9%E7%9B%AE/"/>
+    <url>/2022/09/08/docker%E9%83%A8%E7%BD%B2ruoyi-vue%E9%A1%B9%E7%9B%AE/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>docker</category>
+      
+      <category>vue</category>
+      
+      <category>java</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>vue</tag>
+      
+      <tag>docker</tag>
+      
+      <tag>java</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>docker常用命令记录</title>
     <link href="/2022/09/07/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
     <url>/2022/09/07/docker%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>

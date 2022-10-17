@@ -16,19 +16,19 @@
   <meta name="author" content="宋浩志">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包">
+    <meta name="description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  了解过Jenkins等持续集成工具后，查看到Coding也有相关服务，并且Coding还提供一台云主机来进行构建操作。 如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用coding持续集成SpringBoot项目">
 <meta property="og:url" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="宋浩志的博客">
-<meta property="og:description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包">
+<meta property="og:description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  了解过Jenkins等持续集成工具后，查看到Coding也有相关服务，并且Coding还提供一台云主机来进行构建操作。 如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗">
 <meta property="og:locale">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-26-16.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-01-21.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-04-03.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-17-02.png">
 <meta property="article:published_time" content="2022-10-17T02:30:56.000Z">
-<meta property="article:modified_time" content="2022-10-17T05:28:48.523Z">
+<meta property="article:modified_time" content="2022-10-17T05:39:17.106Z">
 <meta property="article:author" content="宋浩志">
 <meta property="article:tag" content="Coding">
 <meta property="article:tag" content="持续集成">
@@ -268,7 +268,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          5k 字
+          5.1k 字
         
       </span>
     
@@ -280,7 +280,7 @@
         
         
           <!-- compatible with older versions-->
-          42 分钟
+          43 分钟
         
       </span>
     
@@ -340,6 +340,7 @@
 <li>执行部署脚本</li>
 <li>发现Bug -&gt;修改Bug -&gt; 重复第一道流程</li>
 </ul>
+<p>了解过Jenkins等持续集成工具后，查看到Coding也有相关服务，并且Coding还提供一台云主机来进行构建操作。</p>
 <p>如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪</p>
 <h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包，上传至服务器，并自动重启应用</p>
 <h2 id="前期工作"><a href="#前期工作" class="headerlink" title="前期工作"></a>前期工作</h2><h3 id="凭证管理"><a href="#凭证管理" class="headerlink" title="凭证管理"></a>凭证管理</h3><p>官方文档，凭证管理 <a target="_blank" rel="noopener" href="https://coding.net/help/docs/project-settings/credential.html">https://coding.net/help/docs/project-settings/credential.html</a></p>

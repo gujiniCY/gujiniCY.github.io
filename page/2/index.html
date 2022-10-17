@@ -17,8 +17,8 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Schlagwörter">
-<meta property="og:url" content="https://www.songhaozhi.com/tags/index.html">
+<meta property="og:title" content="宋浩志的博客">
+<meta property="og:url" content="https://www.songhaozhi.com/page/2/index.html">
 <meta property="og:site_name" content="宋浩志的博客">
 <meta property="og:locale">
 <meta property="article:author" content="宋浩志">
@@ -28,7 +28,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Schlagwörter - 宋浩志的博客</title>
+  <title>宋浩志的博客</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -110,7 +110,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 80vh;">
+<div class="header-inner" style="height: 100vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -227,7 +227,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Schlagwörter"></span>
+            <span id="subtitle" data-typed-text="An elegant Material-Design theme for Hexo"></span>
           
         </div>
 
@@ -251,16 +251,90 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          >
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="text-center tagcloud">
-  <a href="/tags/Coding/" style="font-size: 15px; color: #bbe">Coding</a> <a href="/tags/centos/" style="font-size: 22.5px; color: #779bd3">centos</a> <a href="/tags/docker/" style="font-size: 22.5px; color: #779bd3">docker</a> <a href="/tags/java/" style="font-size: 22.5px; color: #779bd3">java</a> <a href="/tags/nginx/" style="font-size: 22.5px; color: #779bd3">nginx</a> <a href="/tags/ssl/" style="font-size: 15px; color: #bbe">ssl</a> <a href="/tags/vue/" style="font-size: 30px; color: #337ab7">vue</a> <a href="/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/" style="font-size: 15px; color: #bbe">持续集成</a> <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" style="font-size: 15px; color: #bbe">虚拟机</a>
-</div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2022/09/02/create-vue-project/" target="_self">
+          <img src="https://api.ixiaowai.cn/gqapi/gqapi.php" srcset="/img/loading.gif" lazyload alt="vue学习笔记一创建项目">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2022/09/02/create-vue-project/" target="_self">
+          vue学习笔记一创建项目
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt " href="/2022/09/02/create-vue-project/" target="_self">
+        <div>
+          创建项目1.采用Vite 驱动的 Vue 项目   2.启动项目
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-09-02 18:08" pubdate>
+              2022-09-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/web%E5%89%8D%E7%AB%AF/" class="category-chain-item">web前端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vue/">#vue</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </span>
+  </nav>
+
+
 
               </div>
             </div>
@@ -381,7 +455,37 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        typing(text);
+        jQuery.ajax({
+          type: 'GET',
+          url: 'https://api.mcloc.cn/words/?type=json',
+          headers: {},
+          dataType: 'json',
+          success: function(result) {
+            var apiText;
+            if (result) {
+              var keys = 'data'.split(',');
+              if (result instanceof Array) {
+                result = result[0];
+              }
+              for (const k of keys) {
+                var value = result[k];
+                if (typeof value === 'string') {
+                  apiText = value;
+                  break;
+                } else if (value instanceof Object) {
+                  result = value;
+                }
+              }
+            }
+            apiText ? typing(apiText) : typing(text);
+          },
+          error: function(xhr, status, error) {
+            if (error) {
+              console.error('Failed to request https://api.mcloc.cn/words/?type=json:', error);
+            }
+            typing(text);
+          }
+        })
       
     })(window, document);
   </script>

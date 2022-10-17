@@ -16,19 +16,19 @@
   <meta name="author" content="宋浩志">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言公司项目Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包，上">
+    <meta name="description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用coding持续集成SpringBoot项目">
 <meta property="og:url" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="宋浩志的博客">
-<meta property="og:description" content="前言公司项目Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包，上">
+<meta property="og:description" content="前言公司项目使用Coding进行管理，每次打包部署都需要经历以下流程  代码提交 项目打包 登录服务器 上传应用到服务器 执行部署脚本 发现Bug -&gt;修改Bug -&gt; 重复第一道流程  如果你也长期经历以上流程，强烈建议你了解一下持续集成，因为手动部署实在是麻烦又耗时，使用持续集成后省下的时间又可以多写两行Bug了🤪 需求我们希望每次写完代码，提交到主分支以后，项目能够自动编译打包">
 <meta property="og:locale">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-26-16.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-01-21.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-04-03.png">
 <meta property="og:image" content="https://www.songhaozhi.com/2022/10/17/%E4%BD%BF%E7%94%A8coding%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90SpringBoot%E9%A1%B9%E7%9B%AE/2022-10-17-11-17-02.png">
 <meta property="article:published_time" content="2022-10-17T02:30:56.000Z">
-<meta property="article:modified_time" content="2022-10-17T05:23:30.453Z">
+<meta property="article:modified_time" content="2022-10-17T05:28:48.523Z">
 <meta property="article:author" content="宋浩志">
 <meta property="article:tag" content="Coding">
 <meta property="article:tag" content="持续集成">
@@ -331,7 +331,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司项目Coding进行管理，每次打包部署都需要经历以下流程</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司项目使用Coding进行管理，每次打包部署都需要经历以下流程</p>
 <ul>
 <li>代码提交</li>
 <li>项目打包</li>
@@ -495,20 +495,20 @@
     <div class="license-meta">
       
         <div class="license-meta-item">
-          <div>Author</div>
+          <div>Beitragsautor</div>
           <div>宋浩志</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
-          <div>Posted on</div>
+          <div>Veröffentlicht am</div>
           <div>October 17, 2022</div>
         </div>
       
       
       
         <div class="license-meta-item">
-          <div>Licensed under</div>
+          <div>Urheberrechtshinweis</div>
           <div>
             
               
@@ -540,7 +540,7 @@
                     
                       <a href="/2022/09/23/%E4%BD%BF%E7%94%A8acme-sh%E6%9D%A5%E7%94%B3%E8%AF%B7SSL%E8%AF%81%E4%B9%A6/" title="使用acme.sh来申请SSL证书">
                         <span class="hidden-mobile">使用acme.sh来申请SSL证书</span>
-                        <span class="visible-mobile">Next</span>
+                        <span class="visible-mobile">Nächster</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
                     
@@ -583,7 +583,7 @@
       
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Table of Contents</p>
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;Inhaltsverzeichnis</p>
   <div class="toc-body" id="toc-body"></div>
 </div>
 
@@ -638,7 +638,7 @@
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Suchen</h4>
         <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -646,7 +646,7 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+          <label data-error="x" data-success="v" for="local-search-input">Stichwort</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
@@ -862,7 +862,7 @@
   
 
   <noscript>
-    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+    <div class="noscript-warning">Blog funktioniert am besten mit aktiviertem JavaScript</div>
   </noscript>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":145,"height":315},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.8},"log":false});</script></body>
 </html>

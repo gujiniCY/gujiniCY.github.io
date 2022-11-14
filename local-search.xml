@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Edge用户登录一直转圈</title>
+    <link href="/2022/11/14/Edge%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%80%E7%9B%B4%E8%BD%AC%E5%9C%88/"/>
+    <url>/2022/11/14/Edge%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%80%E7%9B%B4%E8%BD%AC%E5%9C%88/</url>
+    
+    <content type="html"><![CDATA[<p>最近在Edge浏览器右上角登录微软账号的时候，提示0x80190001无法登录。</p><p>通过百度查到如下解决办法：</p><p>1.在控制面板或者IE浏览器中打开Internet选项，删除Cookie信息。</p><p>2.在Internet选项-“高级”菜单中，点击重置，重置网络设置。</p><p>操作以后不提示0x80190001错误信息了，但是一直在转圈，还是没办法登录。</p><p>最后通过设置成微软的DNS解决了</p><p><img src="/2022/11/14/Edge%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%80%E7%9B%B4%E8%BD%AC%E5%9C%88/2022-11-14-11-51-04.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Edge</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Edge</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>SpringBoot整合Socket</title>
     <link href="/2022/10/27/SpringBoot%E6%95%B4%E5%90%88Socket/"/>
     <url>/2022/10/27/SpringBoot%E6%95%B4%E5%90%88Socket/</url>

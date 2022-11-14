@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Windows安装nacos</title>
+    <link href="/2022/11/14/Windows%E5%AE%89%E8%A3%85nacos/"/>
+    <url>/2022/11/14/Windows%E5%AE%89%E8%A3%85nacos/</url>
+    
+    <content type="html"><![CDATA[<h2 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h2><p><a href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a></p><p>访问GitHub下载当前最新的安装包，解压到安装目录</p><h2 id="单机模式支持MySQL"><a href="#单机模式支持MySQL" class="headerlink" title="单机模式支持MySQL"></a>单机模式支持MySQL</h2><ul><li>1.安装数据库，版本要求：5.6.5+</li><li>2.初始化mysql数据库，数据库初始化文件：mysql-schema.sql</li><li>3.修改nacos&#x2F;conf&#x2F;application.properties文件，增加支持mysql数据源配置（目前只支持mysql），添加mysql数据源的url、用户名和密码。</li></ul><h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>Nacos启动需要准备64 bit JDK 1.8+环境。</p><p>启动命令(standalone代表着单机模式运行，非集群模式):</p><p><code>startup.cmd -m standalone</code> </p><p>Nacos默认是集群模式，也可以修改配置改为单机模式启动。</p><p>路径: <code>nacos/bin/startup.cmd</code></p><p><img src="/2022/11/14/Windows%E5%AE%89%E8%A3%85nacos/2022-11-14-15-14-07.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Nacos</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Nacos</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Edge用户登录一直转圈</title>
     <link href="/2022/11/14/Edge%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%80%E7%9B%B4%E8%BD%AC%E5%9C%88/"/>
     <url>/2022/11/14/Edge%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95%E4%B8%80%E7%9B%B4%E8%BD%AC%E5%9C%88/</url>
